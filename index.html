@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Facultate 3D Scan</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/potree@1.8/build/potree/potree.css">
+	<style>
+		body { margin: 0; overflow: hidden; }
+		#viewer { width: 100%; height: 100vh; }
+	</style>
+</head>
+<body>
+	<div id="viewer"></div>
+	<script src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/potree@1.8/build/potree/potree.js"></script>
+	<script>
+		let viewer = new Potree.Viewer(document.getElementById('viewer'));
+		Potree.loadPointCloud('metadata.json').then(e => {
+			viewer.scene.addPointCloud(e.pointcloud);
+			viewer.fitToScreen();
+		});
+	</script>
+</body>
+</html>
